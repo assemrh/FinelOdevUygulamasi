@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AsimRAHALUygulamasi.MainPage">
+
+    <StackLayout >
+        
+        <Frame BackgroundColor="#2196F3" Padding="18" CornerRadius="0">
+            <Label Text="Dönem Sonu Not Hesabı Uygulaması!" HorizontalTextAlignment="Center" TextColor="White" FontSize="32"/>
+        </Frame>
+        <!--<Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
+        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
+        <Label FontSize="16" Padding="30,24,30,0">
+            <Label.FormattedText>
+                <FormattedString>
+                    <FormattedString.Spans>
+                        <Span Text="Learn more at "/>
+                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
+                    </FormattedString.Spans>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>-->
+        <ScrollView Padding="0,0,0,100">
+            <StackLayout
+                BackgroundColor="WhiteSmoke"
+                Margin="3,15">
+
+                <Frame 
+                    CornerRadius="10"
+                    BorderColor="Black"
+                    HorizontalOptions="Fill"
+                    HasShadow="True"
+                    Margin="15,3"
+                    >
+                    <StackLayout HorizontalOptions="Fill" >
+                        <StackLayout Orientation="Horizontal" >
+                            <Label Text="Vize Notu"  FontSize="18" VerticalOptions="Center"/>
+                            <Entry x:Name="VizeNotu" 
+                                   Placeholder="Vize Notunuzu Girin" 
+                                   HorizontalOptions="FillAndExpand"
+                                   Keyboard="Numeric"
+                                   TextChanged="Puan_hesapla"/>
+                        </StackLayout>
+                        <StackLayout >
+                            <Label
+                                Text = ""
+                                x:Name="HataMsgVizeNotu"
+                                FontSize ="Small"
+                                TextColor = "Red"
+                                VerticalTextAlignment = "Center"
+                                HorizontalTextAlignment = "Start"
+                                HorizontalOptions = "Start"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text=" Ödev Notu" FontSize="18" VerticalOptions="Center"/>
+                            <Entry 
+                                x:Name="OdevNotu" 
+                                Placeholder="Odev Notunuzu Girin" 
+                                Keyboard="Numeric"
+                                HorizontalOptions="FillAndExpand"
+                                TextChanged="Puan_hesapla"/>
+                            
+                        </StackLayout>
+                        <StackLayout >
+                            <Label
+                                Text = ""
+                                x:Name="HataMsgOdevNotu"
+                                FontSize ="Small"
+                                TextColor = "Red"
+                                VerticalTextAlignment = "Center"
+                                HorizontalTextAlignment = "Start"
+                                HorizontalOptions = "Start"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label 
+                                Text="{Binding Source={x:Reference OdevVizeNotuYuzdesi},
+                                  Path=Value,
+                                  StringFormat='{0:F0}%'}"/>
+                            <Slider 
+                                x:Name="OdevVizeNotuYuzdesi" 
+                                Minimum="0"
+                                Maximum="100"
+                                Value="40.0"
+                                MaximumTrackColor="Red"
+                                MinimumTrackColor="Blue"
+                                HorizontalOptions="FillAndExpand"
+                                    ValueChanged="OdevVizeNotuYuzdesi_ValueChanged"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text=" Finel Notu" FontSize="18" VerticalOptions="Center"/>
+                            <Entry 
+                                x:Name="FinelNotu" 
+                                Placeholder="Vize Notunuzu Girin"  
+                                Keyboard="Numeric"
+                                HorizontalOptions="FillAndExpand"
+                                TextChanged="Puan_hesapla"/>
+                        </StackLayout>
+                        <StackLayout >
+                            <Label
+                                Text = ""
+                                x:Name="HataMsgFinelNotu"
+                                FontSize ="Small"
+                                TextColor = "Red"
+                                VerticalTextAlignment = "Center"
+                                HorizontalTextAlignment = "Start"
+                                HorizontalOptions = "Start"/>
+                        </StackLayout>
+
+                        <Label Text="F YÜzdesi" FontSize="16" VerticalOptions="Center"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label 
+                                Text="{Binding Source={x:Reference FinelNotuYuzdesi},
+                                  Path=Value,
+                                  StringFormat='{0:F0}%'}"/>
+                            <Slider 
+                                x:Name="FinelNotuYuzdesi" 
+                                Minimum="0"
+                                Value="50.0"
+                                Maximum="100"
+                                MaximumTrackColor="Red"
+                                MinimumTrackColor="Blue"
+                                HorizontalOptions="FillAndExpand"
+                                ValueChanged="FinelNotuYuzdesi_ValueChanged"/>
+                        </StackLayout>
+                        <Button Text="Hesapla" Clicked="Puan_hesapla"/>
+
+                    </StackLayout>
+
+                </Frame>
+                <Frame 
+                    BackgroundColor="LightGreen"
+                    BorderColor="Black"
+                    HorizontalOptions="FillAndExpand"
+                    HasShadow="True"
+                    CornerRadius="10"
+                    Margin="15,3">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Text="HBN" HorizontalOptions="Center"/>
+                            <Label Grid.Row="1" FontSize="26" Grid.Column="0" x:Name="HBN" Text="" HorizontalOptions="Center"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="Harf Notu" HorizontalOptions="Center"/>
+                            <Label FontSize="26" Grid.Row="1" Grid.Column="1" x:Name="HarfNotu" Text=" " HorizontalOptions="Center"/>
+                            <Label Grid.Row="2" Grid.ColumnSpan="2" x:Name="Sonuç" HorizontalOptions="Center"/>
+                        </Grid>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+
+</ContentPage>
